@@ -11,7 +11,7 @@ class Board
         (0...@rows.length).each do |i| 
             (0...@rows.length).each do |j|
                 if i == 0 
-                    rows[i][0] = Rook.new
+                    rows[i][0] = Rook.new(:white, self, )
                     rows[i][1] = Knight.new
                     rows[i][2] = Bishop.new 
                     rows[i][3] = Queen.new 
@@ -40,13 +40,22 @@ class Board
                 end
     end 
 
+    def [](pos)
+        row, col = pos 
+        @rows[row][col] 
+    end 
+
+    def []=(pos, val)
+        row, col = pos 
+        @rows[row][col] = val 
+    end 
+
     def move_piece(start_pos, end_pos)
-        row, col = start_pos
-        piece = @rows[row][col] 
+        piece = self[start_pos]
         raise "No piece at start position" if piece.empty?
-        row_end, col_end = end_pos 
-        destination = @rows[row_end][col_end]
+        destination = self[end_pos]
         raise "error" if piece.valid_moves == false #whatever we need from Piece#valid_moves
+        self[end_pos] = piece 
     end 
 
 end 
