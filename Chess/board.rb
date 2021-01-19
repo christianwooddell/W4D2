@@ -7,4 +7,12 @@ class Board
 
     end 
 
+    def fill_board
+        @rows[2..6]
+    end 
+
+    def move_piece(start_pos, end_pos)
+
+    end 
+
 end 
