@@ -1,4 +1,11 @@
 require_relative "piece.rb"
+require_relative "rook.rb"
+require_relative "bishop.rb"
+require_relative "knight.rb"
+require_relative "king.rb"
+require_relative "queen.rb"
+require_relative "pawn.rb"
+require_relative "nullpiece.rb"
 
 class Board 
 
@@ -11,33 +18,36 @@ class Board
         (0...@rows.length).each do |i| 
             (0...@rows.length).each do |j|
                 if i == 0 
-                    rows[i][0] = Rook.new(:white, self, )
-                    rows[i][1] = Knight.new
-                    rows[i][2] = Bishop.new 
-                    rows[i][3] = Queen.new 
-                    rows[i][4] = King.new 
-                    rows[i][5] = Bishop.new 
-                    rows[i][6] = Knight.new 
-                    rows[i][7] = Rook.new 
+                    @rows[i][0] = Rook.new(:white, self, [i,0])
+                    @rows[i][1] = Knight.new(:white, self, [i,1])
+                    @rows[i][2] = Bishop.new(:white, self, [i,2]) 
+                    @rows[i][3] = Queen.new(:white, self, [i,3]) 
+                    @rows[i][4] = King.new(:white, self, [i,4]) 
+                    @rows[i][5] = Bishop.new(:white, self, [i,5]) 
+                    @rows[i][6] = Knight.new(:white, self, [i,6]) 
+                    @rows[i][7] = Rook.new(:white, self, [i,7]) 
+                end
                 if i == 1 
-                    @rows[i][j] = Pawn.new 
+                    @rows[i][j] = Pawn.new(:white, self, [i,j])
                 end 
-                if i > 1 || i < 6
-                    @rows[i][j] = NullPiece.new 
+                if i > 1 && i < 6
+                    @rows[i][j] = NullPiece.new(:null, self, [i,j])
                 end 
                 if i == 6 
-                    @rows[i][j] = Pawn.new 
+                    @rows[i][j] = Pawn.new(:black, self, [i,j])
                 end 
                 if i == 7
-                    rows[i][0] = Rook.new
-                    rows[i][1] = Knight.new
-                    rows[i][2] = Bishop.new 
-                    rows[i][3] = King.new
-                    rows[i][4] = Queen.new   
-                    rows[i][5] = Bishop.new 
-                    rows[i][6] = Knight.new 
-                    rows[i][7] = Rook.new
+                    @rows[i][0] = Rook.new(:black, self, [i, 0])
+                    @rows[i][1] = Knight.new(:black, self, [i, 1])
+                    @rows[i][2] = Bishop.new(:black, self, [i, 2])
+                    @rows[i][3] = King.new(:black, self, [i, 3])
+                    @rows[i][4] = Queen.new(:black, self, [i, 4])  
+                    @rows[i][5] = Bishop.new(:black, self, [i, 5])
+                    @rows[i][6] = Knight.new(:black, self, [i, 6])
+                    @rows[i][7] = Rook.new(:black, self, [i, 7])
                 end
+            end 
+        end
     end 
 
     def [](pos)
@@ -52,10 +62,11 @@ class Board
 
     def move_piece(start_pos, end_pos)
         piece = self[start_pos]
-        raise "No piece at start position" if piece.empty?
+        raise "No piece at start position" if piece.color == :null #piece.empty?
         destination = self[end_pos]
-        raise "error" if piece.valid_moves == false #whatever we need from Piece#valid_moves
+        # raise "error" if piece.valid_moves == false #whatever we need from Piece#valid_moves
         self[end_pos] = piece 
+        self[start_pos] = NullPiece.new(:null, self, [start_pos])
     end 
 
 end 
