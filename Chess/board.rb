@@ -28,10 +28,25 @@ class Board
                 if i == 6 
                     @rows[i][j] = Pawn.new 
                 end 
+                if i == 7
+                    rows[i][0] = Rook.new
+                    rows[i][1] = Knight.new
+                    rows[i][2] = Bishop.new 
+                    rows[i][3] = King.new
+                    rows[i][4] = Queen.new   
+                    rows[i][5] = Bishop.new 
+                    rows[i][6] = Knight.new 
+                    rows[i][7] = Rook.new
+                end
     end 
 
     def move_piece(start_pos, end_pos)
-
+        row, col = start_pos
+        piece = @rows[row][col] 
+        raise "No piece at start position" if piece.empty?
+        row_end, col_end = end_pos 
+        destination = @rows[row_end][col_end]
+        raise "error" if piece.valid_moves == false #whatever we need from Piece#valid_moves
     end 
 
 end 
