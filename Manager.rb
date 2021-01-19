@@ -1,9 +1,10 @@
 require_relative "Employee.rb"
 class Manager < Employee
 
-    def initialize
+    attr_reader :employees
+    def initialize(name, title, salary, boss)
         @employees = []
-        super 
+        super(name, title, salary, boss)
     end 
 
     def bonus(multiplier)
@@ -12,4 +13,9 @@ class Manager < Employee
         end 
         bonus = sum_of_employees_salaries * multiplier 
     end 
+
+    def add_employee(employee)
+        @employees << employee 
+    end 
+
 end 
