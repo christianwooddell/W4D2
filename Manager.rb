@@ -8,10 +8,10 @@ class Manager < Employee
     end 
 
     def bonus(multiplier)
-        sum_of_employees_salaries = @employees.inject do |accum, ele| 
-            ele.salary + accum 
+        employees_salaries = @employees.map do |ele| 
+            ele.salary
         end 
-        bonus = sum_of_employees_salaries * multiplier 
+        bonus = employees_salaries.sum * multiplier 
     end 
 
     def add_employee(employee)
