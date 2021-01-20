@@ -2,10 +2,10 @@ class Piece
 
     attr_reader :color 
     def initialize(color, board, pos)
-        @color = color 
+        @color = color ||= nil
         @board = board 
         @pos = []
-        
+
     end 
 
     def inspect

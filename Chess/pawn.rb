@@ -9,4 +9,14 @@ class Pawn < Piece
         '♟︎'.colorize(color)
     end 
 
+    def moves 
+
+    end 
+
+    private 
+
+    def forward_dir 
+       self.color == :white ? return 1 : return -1
+    end 
+
 end 
