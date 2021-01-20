@@ -23,11 +23,13 @@ module Slideable
 
     def grow_unblocked_moves_in_dir(dx, dy)
         moves = [] 
+        curr_row, curr_col = self.pos 
         # gets piece's current row and current cols
         # start a loop 
         stop = false 
         until stop 
             current_row += dx 
+            current_col += dy
     end 
 
 

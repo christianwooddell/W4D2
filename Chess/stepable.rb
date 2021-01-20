@@ -2,7 +2,7 @@ module Stepable
 
     def moves 
         moves = []
-
+        moves << self.move_diffs
 
 
     end 
@@ -10,7 +10,7 @@ module Stepable
     private
 
     def move_diffs
-        
+        raise NotImplementedError
     end 
 
 end 
