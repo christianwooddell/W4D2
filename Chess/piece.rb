@@ -12,4 +12,12 @@ class Piece
         @color.inspect
     end 
 
+    def empty?
+        false 
+    end 
+    
+    def Symbol
+        
+    end 
+
 end 

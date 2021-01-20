@@ -1,8 +1,11 @@
 require_relative "piece.rb"
-class NullPiece < Piece 
+require "singleton"
 
-    def initialize(color, board, pos)
-        super(color, board, pos)
+class NullPiece < Piece 
+    include Singleton
+
+    def initialize
+        
     end 
     
 end 

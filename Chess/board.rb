@@ -11,7 +11,7 @@ class Board
 
     def initialize
         @rows = Array.new(8) {Array.new(8, nil)}
-
+        fill_board
     end 
 
     def fill_board
@@ -31,7 +31,7 @@ class Board
                     @rows[i][j] = Pawn.new(:white, self, [i,j])
                 end 
                 if i > 1 && i < 6
-                    @rows[i][j] = NullPiece.new(:null, self, [i,j])
+                    @rows[i][j] = NullPiece.instance
                 end 
                 if i == 6 
                     @rows[i][j] = Pawn.new(:black, self, [i,j])
