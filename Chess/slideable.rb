@@ -17,9 +17,15 @@ module Slideable
 
     def moves 
         moves = []
-        #
+        
+        self.moves_dirs.each do |dir|
+            dx, dy = dir
+            moves << self.grow_unblocked_moves_in_dir(dx, dy)
+        end 
         moves
     end 
+
+
 
     def grow_unblocked_moves_in_dir(dx, dy)
         moves = [] 
@@ -28,8 +34,19 @@ module Slideable
         # start a loop 
         stop = false 
         until stop 
-            current_row += dx 
-            current_col += dy
+            new_row = current_row + dx 
+            new_col = current_col + dy
+            new_pos = [new_row, new_col]
+            if self.board[new_pos].empty?
+                moves << new_pos
+            elsif self.board[new_pos].color != self.color
+                moves << new_pos 
+                stop = true
+            else 
+                stop = true 
+            end 
+        end 
+        moves 
     end 
 
 

@@ -66,7 +66,7 @@ class Board
         destination = self[end_pos]
         # raise "error" if piece.valid_moves == false #whatever we need from Piece#valid_moves
         self[end_pos] = piece 
-        self[start_pos] = NullPiece.new(:null, self, [start_pos])
+        self[start_pos] = NullPiece.instance
     end 
 
 end 
