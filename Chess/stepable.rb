@@ -8,12 +8,12 @@ module Stepable
             new_row = current_row + dx 
             new_col = current_col + dy
             new_pos = [new_row, new_col]
-            if new_pos[0] >= 0 || new_pos[0] <= 7
-                if self.board[new_pos].empty?
+            if (new_pos[0] >= 0 && new_pos[0] <= 7) && (new_pos[1] >= 0 && new_pos[1] <= 7)
+                if self.board[new_pos].empty? || self.board[new_pos].color != self.color
                     moves << new_pos
                 end 
             end 
-            moves << new_pos
+            moves
         end 
         
         
