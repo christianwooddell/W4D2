@@ -9,4 +9,8 @@ class Queen < Piece
         '♛'.colorize(color)
     end
 
+    def moves_dirs
+        DIAGONAL_DIRS + HORIZONTAL_DIRS
+    end
+
 end 
