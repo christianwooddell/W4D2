@@ -16,8 +16,20 @@ module Slideable
     ].freeze
 
     def moves 
-        
+        moves = []
+        #
+        moves
     end 
+
+    def grow_unblocked_moves_in_dir(dx, dy)
+        moves = [] 
+        # gets piece's current row and current cols
+        # start a loop 
+        stop = false 
+        until stop 
+            current_row += dx 
+    end 
+
 
 
 end
