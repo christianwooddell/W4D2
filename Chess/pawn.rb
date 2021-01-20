@@ -1,8 +1,8 @@
 require_relative "piece.rb"
 class Pawn < Piece
 
-    WHITE_PAWN_DIRS = [[1,0],[],[]]
-    BLACK_PAWN_DIRS = [[-1,0],[],[]]
+    WHITE_PAWN_DIRS = [[1,0], [1,1], [1,-1]]
+    BLACK_PAWN_DIRS = [[-1,0], [-1,1], [-1,-1]]
     def initialize(color, board, pos)
         @steps_forward = 0
         super(color, board, pos)
@@ -17,7 +17,22 @@ class Pawn < Piece
         
         moves = []
         current_row, current_col = self.pos
-        self.move_diffs.each do |diff|
+
+
+        if self.board[current_row + self.forward_dir, current_col].empty? 
+            moves << [current_row + self.forward_dir, current_col]
+        end 
+        left_piece = self.board[current_row + self.forward_dir, current_col + self.forward_dir]
+        right_piece = self.board[current_row + self.forward_dir, current_col - self.forward_dir]
+        if !left_piece.empty? && left_piece.color != self.color
+            moves << left_piece.pos
+        end 
+        if !right_piece.empty? && right_piece.color != self.color
+            moves << right_piece.pos
+        end 
+
+
+
             dx, dy = diff
             new_row = current_row + dx 
             new_col = current_col + dy
