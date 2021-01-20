@@ -5,4 +5,8 @@ class Rook < Piece
         super(color, board, pos)
     end 
     
+    def symbol
+        '♜'.colorize(color)
+    end
+
 end 

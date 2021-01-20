@@ -14,8 +14,8 @@ class Piece
 
     def empty?
         false 
-    end 
-    
+    end  
+
     def Symbol
         
     end 
